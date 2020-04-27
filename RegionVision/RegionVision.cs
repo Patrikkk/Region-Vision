@@ -5,7 +5,7 @@ using System.Timers;
 using Microsoft.Xna.Framework;
 using Terraria;
 using TerrariaApi.Server;
-
+using Terraria.Localization;
 using TShockAPI;
 using TShockAPI.Hooks;
 
@@ -375,8 +375,8 @@ namespace RegionVision {
         public void giveItem(Player player, Item item) {
             int itemID = Item.NewItem((int) player.TSPlayer.X, (int) player.TSPlayer.Y, item.width, item.height, item.type, 1, true, 0, true);
             Main.item[itemID].owner = player.index;
-            NetMessage.SendData((int) PacketTypes.ItemDrop, -1, -1, "", itemID, 0f, 0f, 0f);
-            NetMessage.SendData((int) PacketTypes.ItemOwner, -1, -1, "", itemID, 0f, 0f, 0f);
+            NetMessage.SendData((int) PacketTypes.ItemDrop, -1, -1, NetworkText.Empty, itemID, 0f, 0f, 0f);
+            NetMessage.SendData((int) PacketTypes.ItemOwner, -1, -1, NetworkText.Empty, itemID, 0f, 0f, 0f);
         }
 
         private void onPlayerCommand(PlayerCommandEventArgs e) {
